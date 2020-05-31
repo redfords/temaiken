@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Habitats</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <a class="btn btn-light mb-2" th:href="@{/habitats/add}">Agregar Habitat</a>
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Clima</th>
+                    <th>Vegetacion</th>
+                    <th>Continente</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="habitat : ${habitats}">
+                    <td th:text="${habitat.nombre}"></td>
+                    <td th:text="${habitat.clima}"></td>
+                    <td th:text="${habitat.vegetacion}"></td>
+                    <td th:text="${habitat.continente}"></td>
+                    <td>
+                        <a class="btn btn-light" th:href="@{/habitats/edit/} + ${habitat.id}">Editar<i
+                                class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
+                        <form th:action="@{/habitats/delete}" method="post">
+                            <input type="hidden" name="id" th:value="${habitat.id}"/>
+                            <button type="submit" class="btn btn-light">Eliminar<i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

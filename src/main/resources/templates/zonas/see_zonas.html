@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Zonas</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <a class="btn btn-light mb-2" th:href="@{/zonas/add}">Agregar Zona</a>
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Extension</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="zona : ${zonas}">
+                    <td th:text="${zona.nombre}"></td>
+                    <td th:text="${zona.extension}"></td>
+                    <td>
+                        <a class="btn btn-light" th:href="@{/zonas/edit/} + ${zona.id}">Editar<i
+                                class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
+                        <form th:action="@{/zonas/delete}" method="post">
+                            <input type="hidden" name="id" th:value="${zona.id}"/>
+                            <button type="submit" class="btn btn-light">Eliminar<i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

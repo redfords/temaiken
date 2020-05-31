@@ -1,0 +1,26 @@
+<nav th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml"
+     class="navbar navbar-expand-md navbar-default container">
+    <a class="navbar-brand" target="_blank">Temaiken</a>
+    <button class="navbar-toggler" type="button" id="botonMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/especies/show}">Especies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/habitats/show}">Habitats</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/zonas/show}">Zonas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/itinerarios/show}">Itinerarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/usuarios/show}">Usuarios</a>
+            </li>
+        </ul>
+    </div>
+</nav>

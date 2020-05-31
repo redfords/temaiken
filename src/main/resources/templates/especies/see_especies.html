@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Especies</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <a class="btn btn-light mb-2" th:href="@{/especies/add}">Agregar Especie</a>
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Nombre Cientifico</th>
+                    <th>Descripcion</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="especie : ${especies}">
+                    <td th:text="${especie.nombre}"></td>
+                    <td th:text="${especie.nombreCientifico}"></td>
+                    <td th:text="${especie.descripcion}"></td>
+                    <td>
+                        <a class="btn btn-light" th:href="@{/especies/edit/} + ${especie.id}">Editar<i
+                                class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
+                        <form th:action="@{/especies/delete}" method="post">
+                            <input type="hidden" name="id" th:value="${especie.id}"/>
+                            <button type="submit" class="btn btn-light">Eliminar<i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

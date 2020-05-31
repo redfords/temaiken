@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Agregar Habitat</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${habitat}" th:action="@{/habitats/add}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Nombre" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="clima">Clima</label>
+                <input autocomplete="off" autofocus th:field="*{clima}" id="clima"
+                       placeholder="Clima" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('clima')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{clima}"></div>
+            </div>
+            <div class="form-group">
+                <label for="vegetacion">Vegetacion</label>
+                <input autocomplete="off" th:field="*{vegetacion}" id="vegetacion"
+                       placeholder="Vegetacion" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('vegetacion')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{vegetacion}"></div>
+            </div>
+            <div class="form-group">
+                <label for="continente">Continente</label>
+                <input autocomplete="off" th:field="*{continente}" id="continente"
+                       placeholder="Continente" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('continente')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{continente}"></div>
+            </div>
+            <button class="btn btn-light" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-light" th:href="@{/habitats/show}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

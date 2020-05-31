@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Editar Zona</h2>
+        <form th:object="${zona}" th:action="@{/zonas/edit/} + ${zona.id}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Nombre" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="extension">Extension</label>
+                <input autocomplete="off" autofocus th:field="*{extension}" id="extension"
+                       placeholder="Extension" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('extension')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{extension}"></div>
+            </div>
+            <button class="btn btn-light" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-light" th:href="@{/zonas/show}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

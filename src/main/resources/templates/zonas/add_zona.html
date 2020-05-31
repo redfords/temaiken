@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Agregar Zona</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${zona}" th:action="@{/zonas/add}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Nombre" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="extension">Extension</label>
+                <input autocomplete="off" th:field="*{extension}" id="extension"
+                       placeholder="Extension" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('extension')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{extension}"></div>
+            </div>
+            <button class="btn btn-light" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-light" th:href="@{/zonas/show}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

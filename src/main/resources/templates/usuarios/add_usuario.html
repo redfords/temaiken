@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Agregar Usuario</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${usuario}" th:action="@{/usuarios/add}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input autocomplete="off" autofocus th:field="*{nombre}" id="nombre"
+                       placeholder="Nombre" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Direccion</label>
+                <input autocomplete="off" th:field="*{direccion}" id="direccion"
+                       placeholder="Direccion" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('direccion')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{direccion}"></div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input autocomplete="off" th:field="*{telefono}" id="telefono"
+                       placeholder="Telefono" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('telefono')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{telefono}"></div>
+            </div>
+            <div class="form-group">
+                <label for="fechaIngreso">Fecha de Ingreso</label>
+                <input autocomplete="off" th:field="*{fechaIngreso}" id="fechaIngreso"
+                       placeholder="Fecha de Ingreso" type="date"
+                       class="form-control" th:classappend="${#fields.hasErrors('fechaIngreso')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{fechaIngreso}"></div>
+            </div>
+            <div class="form-group">
+                <label for="username">Nombre de Usuario</label>
+                <input autocomplete="off" th:field="*{username}" id="username"
+                       placeholder="Nombre de Usuario" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{username}"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input autocomplete="off" th:field="*{password}" id="password"
+                       placeholder="Password" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{password}"></div>
+            </div>
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <input autocomplete="off" th:field="*{tipo}" id="tipo"
+                       placeholder="Tipo" type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('tipo')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{tipo}"></div>
+            </div>
+            <button class="btn btn-light" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-light" th:href="@{/usuarios/show}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

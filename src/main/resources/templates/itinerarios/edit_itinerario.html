@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Editar Itinerario</h2>
+        <form th:object="${itinerario}" th:action="@{/itinerarios/edit/} + ${itinerario.id}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="duracion">Duracion</label>
+                <input autocomplete="off" autofocus th:field="*{duracion}" id="duracion"
+                       placeholder="Duracion en minutos" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('duracion')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{duracion}"></div>
+            </div>
+            <div class="form-group">
+                <label for="longitud">Longitud</label>
+                <input autocomplete="off" autofocus th:field="*{longitud}" id="longitud"
+                       placeholder="Longitud en metros" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('longitud')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{longitud}"></div>
+            </div>
+            <div class="form-group">
+                <label for="numMaxVisitantes">Numero Maximo de Visitantes</label>
+                <input autocomplete="off" autofocus th:field="*{numMaxVisitantes}" id="numMaxVisitantes"
+                       placeholder="Numero Maximo de Visitantes" type="number"
+                       class="form-control" th:classappend="${#fields.hasErrors('numMaxVisitantes')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{numMaxVisitantes}"></div>
+            </div>
+            <button class="btn btn-light" type="submit">Guardar</button>
+            &nbsp;<a class="btn btn-light" th:href="@{/itinerarios/show}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

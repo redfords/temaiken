@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
+<body>
+<main layout:fragment="content" style="padding-top: 70px;">
+    <div class="col-12">
+        <h2>Itinerarios</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <a class="btn btn-light mb-2" th:href="@{/itinerarios/add}">Agregar Itinerario</a>
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th>Longitud</th>
+                    <th>Duracion</th>
+                    <th>Numero Maximo de Visitantes</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="itinerario : ${itinerarios}">
+                    <td th:text="${itinerario.longitud}"></td>
+                    <td th:text="${itinerario.duracion}"></td>
+                    <td th:text="${itinerario.numMaxVisitantes}"></td>
+                    <td>
+                        <a class="btn btn-light" th:href="@{/itinerarios/edit/} + ${itinerario.id}">Editar<i
+                                class="fa fa-edit"></i></a>
+                    </td>
+                    <td>
+                        <form th:action="@{/itinerarios/delete}" method="post">
+                            <input type="hidden" name="id" th:value="${itinerario.id}"/>
+                            <button type="submit" class="btn btn-light">Eliminar<i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>
